@@ -2,6 +2,7 @@ import { use } from "react";
 import { useActionState } from "react";
 import { INITIAL_VALUES } from "../constants";
 import { OpinionsContext } from "../store/opinions-context";
+import SubmitBtn from "./SubmitBtn";
 
 export function NewOpinion() {
   const { addOpinion } = use(OpinionsContext);
@@ -86,13 +87,7 @@ export function NewOpinion() {
           </ul>
         )}
 
-        <p className="actions">
-          {pending ? (
-            <button disabled>Submitting...</button>
-          ) : (
-            <button type="submit">Submit</button>
-          )}
-        </p>
+        <SubmitBtn />
       </form>
     </div>
   );
