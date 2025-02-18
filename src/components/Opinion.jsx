@@ -1,4 +1,14 @@
 export function Opinion({ opinion: { id, title, body, userName, votes } }) {
+  const handleUpvote = () => {
+    // Implement upvote logic here
+    console.log("upvote");
+  };
+
+  const handleDownvote = () => {
+    // Implement downvote logic here
+    console.log("downvote");
+  };
+
   return (
     <article>
       <header>
@@ -7,7 +17,7 @@ export function Opinion({ opinion: { id, title, body, userName, votes } }) {
       </header>
       <p>{body}</p>
       <form className="votes">
-        <button>
+        <button formAction={handleUpvote}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -27,7 +37,7 @@ export function Opinion({ opinion: { id, title, body, userName, votes } }) {
 
         <span>{votes}</span>
 
-        <button>
+        <button formAction={handleDownvote}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
