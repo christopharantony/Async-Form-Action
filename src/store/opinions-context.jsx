@@ -38,7 +38,12 @@ export function OpinionsContextProvider({ children }) {
   }
 
   async function upvoteOpinion(id) {
-    await upvoteOpinionService(id);
+    const response = await upvoteOpinionService(id);
+
+    if (!response.ok) {
+      return;
+    }
+
     setOpinions((prevOpinions) => {
       return prevOpinions.map((opinion) => {
         if (opinion.id === id) {
@@ -50,7 +55,12 @@ export function OpinionsContextProvider({ children }) {
   }
 
   async function downvoteOpinion(id) {
-    await downvoteOpinionService(id);
+    const response = await downvoteOpinionService(id);
+
+    if (!response.ok) {
+      return;
+    }
+
     setOpinions((prevOpinions) => {
       return prevOpinions.map((opinion) => {
         if (opinion.id === id) {
