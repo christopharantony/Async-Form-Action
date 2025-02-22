@@ -1,5 +1,10 @@
 import { createContext, useEffect, useState } from "react";
-import { findAllOptions, saveOpinion } from "../service/option.service";
+import {
+  downvoteOpinionService,
+  findAllOptions,
+  saveOpinion,
+  upvoteOpinionService,
+} from "../service/option.service";
 
 export const OpinionsContext = createContext({
   opinions: null,
@@ -32,7 +37,8 @@ export function OpinionsContextProvider({ children }) {
     setOpinions((prevOpinions) => [savedOpinion, ...prevOpinions]);
   }
 
-  function upvoteOpinion(id) {
+  async function upvoteOpinion(id) {
+    await upvoteOpinionService(id);
     setOpinions((prevOpinions) => {
       return prevOpinions.map((opinion) => {
         if (opinion.id === id) {
@@ -43,7 +49,8 @@ export function OpinionsContextProvider({ children }) {
     });
   }
 
-  function downvoteOpinion(id) {
+  async function downvoteOpinion(id) {
+    await downvoteOpinionService(id);
     setOpinions((prevOpinions) => {
       return prevOpinions.map((opinion) => {
         if (opinion.id === id) {

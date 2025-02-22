@@ -13,3 +13,15 @@ export const saveOpinion = async (opinion) => {
     body: JSON.stringify(opinion),
   });
 };
+
+export const upvoteOpinionService = async (id) => {
+  return await fetch(`${rootRoute}/${id}/upvote`, {
+    method: "POST",
+  });
+};
+
+export const downvoteOpinionService = async (id) => {
+  return await fetch(`${rootRoute}/${id}/downvote`, {
+    method: "POST",
+  });
+};
