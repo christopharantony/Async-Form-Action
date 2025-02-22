@@ -1,4 +1,5 @@
-import { createContext, useEffect, useState } from 'react';
+import { createContext, useEffect, useState } from "react";
+import { findAllOptions, saveOpinion } from "../service/option.service";
 
 export const OpinionsContext = createContext({
   opinions: null,
@@ -12,7 +13,7 @@ export function OpinionsContextProvider({ children }) {
 
   useEffect(() => {
     async function loadOpinions() {
-      const response = await fetch('http://localhost:3000/opinions');
+      const response = await findAllOptions();
       const opinions = await response.json();
       setOpinions(opinions);
     }
@@ -21,13 +22,7 @@ export function OpinionsContextProvider({ children }) {
   }, []);
 
   async function addOpinion(enteredOpinionData) {
-    const response = await fetch('http://localhost:3000/opinions', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(enteredOpinionData),
-    });
+    const response = await saveOpinion(enteredOpinionData);
 
     if (!response.ok) {
       return;
